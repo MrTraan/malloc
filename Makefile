@@ -6,7 +6,7 @@
 #    By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/30 14:36:55 by ngrasset          #+#    #+#              #
-#    Updated: 2017/05/13 20:13:43 by ngrasset         ###   ########.fr        #
+#    Updated: 2017/05/14 18:37:40 by ngrasset         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ SRC = ./src/block_creation.c \
 ./src/heap_creation.c \
 ./src/malloc_safe.c \
 ./src/malloc_unsafe.c \
-./src/dump_memory.c
+./src/dump_memory.c \
+./src/block_helpers.c \
+./src/strings.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -47,11 +49,15 @@ fclean: clean
 	rm -f $(NAME)
 	rm -f $(LINK_NAME)
 
+re: fclean all
+
 test: $(OBJ)
 	gcc -c $(INC) $(LIBFT_INC) tests/main.c -o tests/main.o
 	gcc -g -fsanitize=address -o test_malloc $(INC) $(OBJ) tests/main.o
 
-
-re: fclean all
+ls: $(OBJ)
+	make -C ./ft_ls
+	make -C ./ft_ls/libft
+	gcc -g -fsanitize=address -o test_malloc $(INC) $(OBJ) -lft -L./ft_ls/libft ft_ls/*.o
 
 .PHONY: all clean fclean re

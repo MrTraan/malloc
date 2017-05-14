@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 19:01:01 by ngrasset          #+#    #+#             */
-/*   Updated: 2017/05/13 20:14:55 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/05/14 18:46:04 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,20 @@ int							init_alloc_manager(void);
 t_block						*grow_heap(t_alloc_type type);
 
 void 						remove_large_block(t_block *block);
+void						optimize_memory(void);
+
 void						split_block(t_block *block, size_t size);
 t_block						*find_existing_block(t_block *heap, size_t size);
 void						*find_block(t_block *heap, size_t size, t_alloc_type type);
 void						*create_large_block(size_t size);
 
+t_block						*find_previous_block(t_block *block);
+t_block						*find_block_from_addr(void *addr);
+
 void						show_alloc_mem(void);
+
+void						ft_putnbr(unsigned long n, int base);
+void						ft_putendl(char *s);
+void						ft_putstr(char *s);
 
 #endif

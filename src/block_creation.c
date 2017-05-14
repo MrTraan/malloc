@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 19:43:04 by ngrasset          #+#    #+#             */
-/*   Updated: 2017/05/13 20:27:24 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/05/14 18:31:04 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ void			*find_block(t_block *heap, size_t size, t_alloc_type type)
 void			*create_large_block(size_t size)
 {
 	t_block		*new;
-	size_t 		size_aligned;
+	size_t		size_aligned;
 
 	size_aligned = ALIGN_SIZE_4096(size);
 	if (!(new = (t_block *)mmap(0, size_aligned, PROT_READ | PROT_WRITE,
 					MAP_ANON | MAP_PRIVATE, -1, 0)))
 		return (NULL);
 	new->size = size_aligned - HEADER_SIZE;
-	new->is_free = TRUE;
+	new->is_free = FALSE;
 	new->next = g_alloc_manager.large_heap;
 	new->data = (void *)new + HEADER_SIZE;
 	g_alloc_manager.large_heap = new;

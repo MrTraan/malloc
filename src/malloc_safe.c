@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 19:28:03 by ngrasset          #+#    #+#             */
-/*   Updated: 2017/05/13 20:08:51 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/05/14 15:28:13 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void			*realloc(void *addr, size_t size)
 {
 	void		*ptr;
 
+	if (!addr)
+		return malloc(size);
 	if (size == 0 || init_malloc() != 0)
 		return (NULL);
 	pthread_mutex_lock(&g_locker);

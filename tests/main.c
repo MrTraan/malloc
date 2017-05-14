@@ -6,7 +6,7 @@
 /*   By: ngrasset <ngrasset@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 15:29:13 by ngrasset          #+#    #+#             */
-/*   Updated: 2017/05/13 20:29:23 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/05/14 17:29:19 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	test_malloc_simple()
 		}
 	}
 	for (int i = 0; i < 3; i++) {
-		char *str2 = (char *)malloc(1024);
+		char *str2 = (char *)malloc(TINY_BLOCK + 1);
 		strcpy(str2, "WORLD");
 		holder[i + 50] = str2;
 		if (i == 1) {
@@ -39,7 +39,7 @@ void	test_malloc_simple()
 			holder[i + 50] = NULL;
 		}
 	}
-	holder[53] = malloc(10000);
+	holder[53] = malloc(SMALL_BLOCK + 1);
 	free(r);
 	free(r2);
 
@@ -68,12 +68,14 @@ void	test_realloc_simple()
 	show_alloc_mem();
 	printf("\n=============\n");
 	
-	s2 = realloc(s2, SMALL_BLOCK + 1);
+	printf("String before realloc: %s\n", s2);
+	s2 = realloc(s2, TINY_BLOCK + 1);
 
 	printf("\nAFTER REALLOC\n");
 	printf("\n=============\n");
 	show_alloc_mem();
 	printf("\n=============\n");
+	printf("String after realloc: %s\n", s2);
 	free(s1);
 	free(s2);
 }
@@ -82,28 +84,61 @@ void	test_realloc_useless()
 {
 	char	*s1 = malloc(10);
 	strcpy(s1, "hello");
-
 	
 	printf("Useless realloc, should not do anything\n");
 	printf("\nBEFORE REALLOC\n");
 	printf("\n=============\n");
-//	show_alloc_mem();
+	show_alloc_mem();
 	printf("\n=============\n");
+	printf("String before realloc: %s\n", s1);
 	
 	s1 = realloc(s1, 9);
 
 	printf("\nAFTER REALLOC\n");
 	printf("\n=============\n");
-//	show_alloc_mem();
+	show_alloc_mem();
 	printf("\n=============\n");
+	printf("String after realloc: %s\n", s1);
 	free(s1);
+}
 
+void test_realloc_big()
+{
+	char	*s1 = malloc(SMALL_BLOCK + 1);
+	strcpy(s1, "hello");
+	
+	printf("\nBEFORE REALLOC\n");
+	printf("\n=============\n");
+	show_alloc_mem();
+	printf("\n=============\n");
+	printf("String before realloc: %s\n", s1);
+	
+	s1 = realloc(s1, SMALL_BLOCK + 4097);
+
+	printf("\nAFTER REALLOC\n");
+	printf("\n=============\n");
+	show_alloc_mem();
+	printf("\n=============\n");
+	printf("String after realloc: %s\n", s1);
+	free(s1);
+}
+
+void test_segfault()
+{
+	char *s1 = malloc(SMALL_BLOCK + 1);
+	char *s2 = malloc(SMALL_BLOCK + 1);
+	char *s3 = malloc(SMALL_BLOCK + 1);
+	free(s1);
+	free(s2);
+	free(s3);
 }
 
 int		main(void)
-{ 
+{
+	test_segfault();
 	test_malloc_simple();
 	test_realloc_simple();
 	test_realloc_useless();
+	test_realloc_big();
 	return (0);
 }

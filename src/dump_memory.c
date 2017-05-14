@@ -6,34 +6,33 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 20:13:14 by ngrasset          #+#    #+#             */
-/*   Updated: 2017/05/13 20:14:57 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/05/14 18:50:12 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <malloc.h>
 #include <stdio.h>
-void	print_alloc_info(t_block *b)
-{
-	printf("%p - %p : %d octets\n", b->data, b->data + b->size, b->size);
-	/*
-	print_addr((void *)(b->data));
-	write(1, " - ", 3);
-	print_addr((void *)(b->data + b->size));
-	write(1, " : ", 3);
-	printf("%d", (int)b->alloc_size);
-	write(1, " octets\n", 8);
-	*/
-}
-
 void	print_addr(void *addr)
 {
-	printf("%p\n", addr);
+	ft_putstr("0x");
+	ft_putnbr((size_t)addr, 16);
+}
+
+void	print_alloc_info(t_block *b)
+{
+	print_addr((void *)(b->data));
+	ft_putstr(" - ");
+	print_addr((void *)(b->data + b->size));
+	ft_putstr(" : ");
+	ft_putnbr((int)b->size, 10);
+	ft_putendl(" octets");
 }
 
 void	print_memzone(t_block *b, unsigned int *total)
 {
 	print_addr(b);
 	write(1, "\n", 1);
+	fprintf(stderr, "Supposed to be %p\n", b);
 	while (b)
 	{
 		if (b->is_free == FALSE)
@@ -61,6 +60,7 @@ void	show_alloc_mem(void)
 	write(1, "LARGE : ", 8);
 	print_memzone(b, &total);
 	write(1, "Total: ", 7);
-	printf("%d octets\n", (int)total);
+	ft_putnbr(total, 10);
+	ft_putendl(" octets");
 }
 
