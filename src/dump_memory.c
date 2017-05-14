@@ -6,12 +6,12 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 20:13:14 by ngrasset          #+#    #+#             */
-/*   Updated: 2017/05/14 18:50:12 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/05/14 18:55:53 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <malloc.h>
-#include <stdio.h>
+
 void	print_addr(void *addr)
 {
 	ft_putstr("0x");
@@ -32,7 +32,6 @@ void	print_memzone(t_block *b, unsigned int *total)
 {
 	print_addr(b);
 	write(1, "\n", 1);
-	fprintf(stderr, "Supposed to be %p\n", b);
 	while (b)
 	{
 		if (b->is_free == FALSE)
@@ -46,7 +45,7 @@ void	print_memzone(t_block *b, unsigned int *total)
 
 void	show_alloc_mem(void)
 {
-	t_block	*b;
+	t_block				*b;
 	unsigned int		total;
 
 	total = 0;
@@ -63,4 +62,3 @@ void	show_alloc_mem(void)
 	ft_putnbr(total, 10);
 	ft_putendl(" octets");
 }
-

@@ -6,13 +6,13 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 20:00:20 by ngrasset          #+#    #+#             */
-/*   Updated: 2017/05/14 18:30:34 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/05/14 18:56:18 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <malloc.h>
 
-void 		remove_large_block(t_block *block)
+void		remove_large_block(t_block *block)
 {
 	t_block		*prev;
 
@@ -43,7 +43,7 @@ static void	remove_empty_pages(t_block *head, size_t size)
 	t_block		*next;
 
 	if (!head)
-		return;
+		return ;
 	ptr = head->next;
 	while (ptr && ptr->next)
 	{

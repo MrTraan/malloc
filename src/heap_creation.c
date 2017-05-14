@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 19:11:03 by ngrasset          #+#    #+#             */
-/*   Updated: 2017/05/13 20:08:31 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/05/14 18:57:18 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int					init_alloc_manager(void)
 	return (0);
 }
 
-static void		register_new_block(t_block *new, void **heap)
+static void			register_new_block(t_block *new, void **heap)
 {
-	t_block	 		*ptr;
+	t_block		*ptr;
 
 	ptr = (t_block *)*heap;
 	if (!ptr)

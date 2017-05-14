@@ -6,7 +6,7 @@
 #    By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/30 14:36:55 by ngrasset          #+#    #+#              #
-#    Updated: 2017/05/14 18:37:40 by ngrasset         ###   ########.fr        #
+#    Updated: 2017/05/14 18:58:37 by ngrasset         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,10 +54,5 @@ re: fclean all
 test: $(OBJ)
 	gcc -c $(INC) $(LIBFT_INC) tests/main.c -o tests/main.o
 	gcc -g -fsanitize=address -o test_malloc $(INC) $(OBJ) tests/main.o
-
-ls: $(OBJ)
-	make -C ./ft_ls
-	make -C ./ft_ls/libft
-	gcc -g -fsanitize=address -o test_malloc $(INC) $(OBJ) -lft -L./ft_ls/libft ft_ls/*.o
 
 .PHONY: all clean fclean re

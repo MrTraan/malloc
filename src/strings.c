@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 18:31:45 by ngrasset          #+#    #+#             */
-/*   Updated: 2017/05/14 18:47:30 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/05/14 18:54:18 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void		ft_putendl(char *s)
 
 static void	ft_putdigit(int n)
 {
-	if (n > 0 && n < 10)
+	if (n >= 0 && n < 10)
 		n += '0';
 	else
-		n = (n - 10 + 'A');
+		n = (n - 10 + 'a');
 	write(1, &n, 1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 19:27:33 by ngrasset          #+#    #+#             */
-/*   Updated: 2017/05/14 17:26:30 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/05/14 18:56:53 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void			*ft_memcpy(void *dst, const void *src, size_t n)
 
 void				*malloc_unsafe(size_t size)
 {
-	size_t 			size_aligned;
+	size_t			size_aligned;
 
 	size_aligned = ALIGN_SIZE_8(size);
 	if (size_aligned <= TINY_BLOCK)
