@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 16:50:39 by ngrasset          #+#    #+#             */
-/*   Updated: 2017/05/14 17:06:24 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/05/20 14:08:16 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,16 @@ t_block			*find_previous_block(t_block *block)
 {
 	t_block		*ptr;
 
-	if (block->size <= TINY_BLOCK)
+	if (block->size <= (t_ui)TINY_BLOCK)
 		ptr = g_alloc_manager.tiny_heap;
-	else if (block->size <= SMALL_BLOCK)
+	else if (block->size <= (t_ui)SMALL_BLOCK)
 		ptr = g_alloc_manager.small_heap;
 	else
 		ptr = g_alloc_manager.large_heap;
 	if (!ptr)
 		return (NULL);
 	if (ptr == block)
-		return (ptr);
+		return (NULL);
 	while (ptr->next)
 	{
 		if (ptr->next == block)

@@ -6,7 +6,7 @@
 /*   By: ngrasset <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 19:27:33 by ngrasset          #+#    #+#             */
-/*   Updated: 2017/05/14 18:56:53 by ngrasset         ###   ########.fr       */
+/*   Updated: 2017/05/20 13:40:07 by ngrasset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void				free_unsafe(void *addr)
 	if (block->size > SMALL_BLOCK)
 		return (remove_large_block(block));
 	block->is_free = TRUE;
-	optimize_memory();
+	optimize_memory(block);
 }
 
 void				*realloc_unsafe(void *addr, size_t size)
